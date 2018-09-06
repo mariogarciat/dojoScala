@@ -1,0 +1,21 @@
+[0m[[0m[31merror[0m] [0m[0m/home/s4n/IdeaProjects/ScalaP/src/main/scala/Main.scala:8:27: object marshallers is not a member of package akka.http.scaladsl[0m
+[0m[[0m[31merror[0m] [0m[0mimport akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._[0m
+[0m[[0m[31merror[0m] [0m[0m                          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/s4n/IdeaProjects/ScalaP/src/main/scala/Main.scala:9:8: not found: object spray[0m
+[0m[[0m[31merror[0m] [0m[0mimport spray.json.DefaultJsonProtocol._[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/s4n/IdeaProjects/ScalaP/src/main/scala/Main.scala:30:29: not found: value jsonFormat2[0m
+[0m[[0m[31merror[0m] [0m[0m  implicit val itemFormat = jsonFormat2(Item)[0m
+[0m[[0m[31merror[0m] [0m[0m                            ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/s4n/IdeaProjects/ScalaP/src/main/scala/Main.scala:31:30: not found: value jsonFormat1[0m
+[0m[[0m[31merror[0m] [0m[0m  implicit val orderFormat = jsonFormat1(Order)[0m
+[0m[[0m[31merror[0m] [0m[0m                             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/s4n/IdeaProjects/ScalaP/src/main/scala/Main.scala:54:41: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : WebServer.Item[0m
+[0m[[0m[31merror[0m] [0m[0m required: akka.http.scaladsl.marshalling.ToResponseMarshallable[0m
+[0m[[0m[31merror[0m] [0m[0m            case Some(item) => complete(item)[0m
+[0m[[0m[31merror[0m] [0m[0m                                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/s4n/IdeaProjects/ScalaP/src/main/scala/Main.scala:61:22: could not find implicit value for parameter um: akka.http.scaladsl.unmarshalling.FromRequestUnmarshaller[WebServer.Order][0m
+[0m[[0m[31merror[0m] [0m[0m            entity(as[Order]) { order =>[0m
+[0m[[0m[31merror[0m] [0m[0m                     ^[0m
+[0m[[0m[31merror[0m] [0m[0m6 errors found[0m
