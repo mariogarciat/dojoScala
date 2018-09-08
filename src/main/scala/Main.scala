@@ -20,30 +20,33 @@ object WebServer {
   implicit val executionContext = system.dispatcher
 
   var orders: List[Item] = Nil
+  var
 
   // domain model
-  //final case class Item(name: String, id: Long)
-  //final case class Order(items: List[Item])
+  final case class Item(name: String, id: Long)
+  final case class Order(items: List[Item])
 
-  case class Student(name: String, id: String, notes: List[Note], courses: List[Course])
-  case class Note(value: Double, percentage: Int)
-  case class Course(students: List[Student], name: String, id: String)
+  final case class Student(name: String, id: String, notes: List[Note])
+  final case class Note(value: Double)
+  final case class Course(name: String, id: String, students: List[Student])
 
 
   // formats for unmarshalling and marshalling
   //implicit val itemFormat = jsonFormat2(Item)
   //implicit val orderFormat = jsonFormat1(Order)
 
-  implicit val studentFormat = jsonFormat4(Student)
-  implicit val noteFormat = jsonFormat2(Note)
+  implicit val studentFormat = jsonFormat3(Student)
+  implicit val noteFormat = jsonFormat1(Note)
   implicit val courseFormat = jsonFormat3(Course)
 
   // (fake) async database query api
 
   object Operation {
 
+    var students: List[Student] = Nil
+    var courses: List[Course] = List()
 
-    /*def fetchItem(itemId: Long): Future[Option[Item]] = Future {
+    def fetchItem(itemId: Long): Future[Option[Item]] = Future {
       orders.find(o => o.id == itemId)
     }
 
@@ -59,7 +62,43 @@ object WebServer {
       Future {
         Done
       }
-    }*/
+    }
+
+    def addStudent(student: Student, idCourse: String): Future[Done] = {
+
+       //student::course.students
+      val course: Option[Course] = courses.find(c => c.id == idCourse)
+      var courseStudents = course.get.students
+      courseStudents = student match {
+        case Student(name,id,notes) => student::courseStudents
+        case _ => courseStudents
+      }
+      Future {
+        Done
+      }
+    }
+
+    def getWinnerStudents(allStudents: List[Student]): List[String] = {
+
+      allStudents.filter(stu => average(stu.notes) > 2.95)
+        .map(stu => stu.name)
+
+    }
+
+    def average(notes: List[Note]): Double = {
+      val notesValues: List[Double] = notes.map(el=>el.value)
+      val sum = notesValues.foldRight(0.0){(acc,el) => acc+el}
+      sum/notes.length
+    }
+
+    def addNote(note: Double, studentId: String, courseId: String): Future[Done] = {
+     val student: Option[Student] = courses.find(c => c.id == courseId)
+                                    .flatMap(c => c.students
+                                      .find(e => e.id == studentId))
+     var studentNotes = student.get.notes
+
+    }
+
   }
 
 
