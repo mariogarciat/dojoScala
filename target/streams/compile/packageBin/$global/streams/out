@@ -1,1 +1,23 @@
-[0m[[0m[0mdebug[0m] [0m[0mJar uptodate: /home/s4n/IdeaProjects/ScalaP/target/scala-2.12/scalap_2.12-0.1.jar[0m
+[0m[[0m[0minfo[0m] [0m[0mPackaging /home/s4n/IdeaProjects/ScalaP/target/scala-2.12/scalap_2.12-0.1.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	WebServer$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/s4n/IdeaProjects/ScalaP/target/scala-2.12/classes/WebServer$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	WebServer$Sumar$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/s4n/IdeaProjects/ScalaP/target/scala-2.12/classes/WebServer$Sumar$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	WebServer$Sumar.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/s4n/IdeaProjects/ScalaP/target/scala-2.12/classes/WebServer$Sumar.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	WebServer$Order$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/s4n/IdeaProjects/ScalaP/target/scala-2.12/classes/WebServer$Order$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	WebServer$Order.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/s4n/IdeaProjects/ScalaP/target/scala-2.12/classes/WebServer$Order.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	WebServer$Item.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/s4n/IdeaProjects/ScalaP/target/scala-2.12/classes/WebServer$Item.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	WebServer.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/s4n/IdeaProjects/ScalaP/target/scala-2.12/classes/WebServer.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	WebServer$Operation$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/s4n/IdeaProjects/ScalaP/target/scala-2.12/classes/WebServer$Operation$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Operation.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/s4n/IdeaProjects/ScalaP/target/scala-2.12/classes/Operation.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	WebServer$Item$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/s4n/IdeaProjects/ScalaP/target/scala-2.12/classes/WebServer$Item$.class[0m
+[0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m

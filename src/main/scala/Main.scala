@@ -9,7 +9,6 @@ import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._
 import spray.json.DefaultJsonProtocol._
 
 import scala.io.StdIn
-
 import scala.concurrent.Future
 
 object WebServer {
@@ -23,23 +22,44 @@ object WebServer {
   var orders: List[Item] = Nil
 
   // domain model
-  final case class Item(name: String, id: Long)
-  final case class Order(items: List[Item])
+  //final case class Item(name: String, id: Long)
+  //final case class Order(items: List[Item])
+
+  case class Student(name: String, id: String, notes: List[Note], courses: List[Course])
+  case class Note(value: Double, percentage: Int)
+  case class Course(students: List[Student], name: String, id: String)
+
 
   // formats for unmarshalling and marshalling
-  implicit val itemFormat = jsonFormat2(Item)
-  implicit val orderFormat = jsonFormat1(Order)
+  //implicit val itemFormat = jsonFormat2(Item)
+  //implicit val orderFormat = jsonFormat1(Order)
+
+  implicit val studentFormat = jsonFormat4(Student)
+  implicit val noteFormat = jsonFormat2(Note)
+  implicit val courseFormat = jsonFormat3(Course)
 
   // (fake) async database query api
-  def fetchItem(itemId: Long): Future[Option[Item]] = Future {
-    orders.find(o => o.id == itemId)
-  }
-  def saveOrder(order: Order): Future[Done] = {
-    orders = order match {
-      case Order(items) => items ::: orders
-      case _            => orders
+
+  object Operation {
+
+
+    /*def fetchItem(itemId: Long): Future[Option[Item]] = Future {
+      orders.find(o => o.id == itemId)
     }
-    Future { Done }
+
+    def fetchAll(): Future[List[Item]] = Future {
+      orders
+    }
+
+    def saveOrder(order: Order): Future[Done] = {
+      orders = order match {
+        case Order(items) => items ::: orders
+        case _ => orders
+      }
+      Future {
+        Done
+      }
+    }*/
   }
 
 
@@ -50,7 +70,7 @@ object WebServer {
       get {
         pathPrefix("item" / LongNumber) { id =>
           // there might be no item for a given id
-          val maybeItem: Future[Option[Item]] = fetchItem(id)
+          val maybeItem: Future[Option[Item]] = Operation.fetchItem(id)
 
           onSuccess(maybeItem) {
             case Some(item) => complete(item)
@@ -58,16 +78,27 @@ object WebServer {
           }
         }
       } ~
-        post {
-          path("create-order") {
-            entity(as[Order]) { order =>
-              val saved: Future[Done] = saveOrder(order)
-              onComplete(saved) { done =>
-                complete("order created")
-              }
+      post {
+        path("create-order") {
+          entity(as[Order]) { order =>
+            val saved: Future[Done] = Operation.saveOrder(order)
+            onComplete(saved) { done =>
+              complete("order created")
             }
           }
         }
+      }~
+      get {
+        pathPrefix("items") { items =>
+          // there might be no item for a given id
+          val maybeItems: Future[List[Item]] = Operation.fetchAll()
+
+          onSuccess(maybeItems) {
+            case Some(item) => complete(item)
+            case None       => complete(StatusCodes.NotFound)
+          }
+        }
+      }
 
     val bindingFuture = Http().bindAndHandle(route, "localhost", 8080)
     println(s"Server online at http://localhost:8080/\nPress RETURN to stop...")
@@ -78,3 +109,6 @@ object WebServer {
 
   }
 }
+
+List[Student] students;
+list = students.filter((el) => promedio(el.notes)) > 2.95).map((el) => el.name)
