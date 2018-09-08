@@ -53,8 +53,8 @@ object WebServer {
 
 
   // formats for unmarshalling and marshalling
-  //implicit val itemFormat = jsonFormat2(Item)
-  //implicit val orderFormat = jsonFormat1(Order)
+  implicit val itemFormat = jsonFormat2(Item)
+  implicit val orderFormat = jsonFormat1(Order)
 
   implicit val studentFormat = jsonFormat3(Student)
   implicit val noteFormat = jsonFormat1(Note)
@@ -65,7 +65,6 @@ object WebServer {
   object Operation {
 
     var students: List[Student] = Nil
-    var courses: List[Course] = List()
 
     def fetchItem(itemId: Long): Future[Option[Item]] = Future {
       orders.find(o => o.id == itemId)
@@ -112,12 +111,16 @@ object WebServer {
       sum/notes.length
     }
 
-    def addNote(note: Double, studentId: String, courseId: String): Future[Done] = {
+    /*def addNote(note: Double, studentId: String, courseId: String): Future[Done] = {
      val student: Option[Student] = courses.find(c => c.id == courseId)
                                     .flatMap(c => c.students
                                       .find(e => e.id == studentId))
      var studentNotes = student.get.notes
 
+    }*/
+
+    def fetchStudents(courseId: String): Future[Option[List[Student]]] = Future {
+      courses.find(c => c.id == courseId).flatMap(course => Option(course.students))
     }
 
   }
@@ -149,13 +152,15 @@ object WebServer {
         }
       }~
       get {
-        pathPrefix("items") { items =>
-          // there might be no item for a given id
-          val maybeItems: Future[List[Item]] = Operation.fetchAll()
+        pathPrefix("courses" / IntNumber) {
+          entity(as[Course]) { courseId =>
+            // there might be no item for a given id
+            val maybeStudents: Future[Option[List[Student]]] = Operation.fetchStudents(courseId.toString)
 
-          onSuccess(maybeItems) {
-            case Some(item) => complete(item)
-            case None       => complete(StatusCodes.NotFound)
+            onSuccess(maybeStudents) {
+              case Some(some) => complete(some)
+              case None => complete(StatusCodes.NotFound)
+            }
           }
         }
       }
@@ -169,6 +174,3 @@ object WebServer {
 
   }
 }
-
-List[Student] students;
-list = students.filter((el) => promedio(el.notes)) > 2.95).map((el) => el.name)

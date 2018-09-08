@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/main/scala/Main.scala" line="85" mnemonic="7" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/scala/Main.scala" line="84" mnemonic="7" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fcc7ae66-4865-48b9-8ffc-3bdb1784d2c2" name="Default" comment="">
@@ -37,8 +37,8 @@
       <file leaf-file-name="Main.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/Main.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="113" lean-forward="true" selection-start-line="113" selection-end-line="113" />
+            <state relative-caret-position="182">
+              <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -62,8 +62,8 @@
       <file leaf-file-name="FutureSuite.java" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Documents/java-training/src/test/java/co/com/s4n/training/java/vavr/FutureSuite.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="193" column="84" selection-start-line="193" selection-start-column="69" selection-end-line="193" selection-end-column="84" />
+            <state relative-caret-position="148">
+              <caret line="254" column="5" lean-forward="true" selection-start-line="254" selection-start-column="5" selection-end-line="254" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -91,9 +91,9 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>flatm</find>
-      <find>getor</find>
       <find>fold</find>
       <find>geto</find>
+      <find>getor</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -291,12 +291,12 @@
       <workItem from="1536173771116" duration="3033000" />
       <workItem from="1536244376633" duration="4726000" />
       <workItem from="1536281277555" duration="2661000" />
-      <workItem from="1536294506047" duration="21506000" />
+      <workItem from="1536294506047" duration="25223000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31926000" />
+    <option name="totallyTimeSpent" value="35643000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
@@ -313,7 +313,7 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32913387" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.24012639" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.43127963" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24942264" />
@@ -434,15 +434,15 @@
     </entry>
     <entry file="file://$USER_HOME$/Documents/java-training/src/test/java/co/com/s4n/training/java/vavr/FutureSuite.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="193" column="84" selection-start-line="193" selection-start-column="69" selection-end-line="193" selection-end-column="84" />
+        <state relative-caret-position="148">
+          <caret line="254" column="5" lean-forward="true" selection-start-line="254" selection-start-column="5" selection-end-line="254" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/Main.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="113" lean-forward="true" selection-start-line="113" selection-end-line="113" />
+        <state relative-caret-position="182">
+          <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
