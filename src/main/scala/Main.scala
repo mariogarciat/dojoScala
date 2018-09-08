@@ -2,12 +2,16 @@ import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
 import akka.Done
+import akka.actor.Status.Success
 import akka.http.scaladsl.server.Route
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._
+import spray.json.DefaultJsonProtocol
 import spray.json.DefaultJsonProtocol._
+import spray.json._
 
+import scala.util.parsing.json._
 import scala.io.StdIn
 import scala.concurrent.Future
 
@@ -56,9 +60,15 @@ object WebServer {
   implicit val itemFormat = jsonFormat2(Item)
   implicit val orderFormat = jsonFormat1(Order)
 
-  implicit val studentFormat = jsonFormat3(Student)
+
   implicit val noteFormat = jsonFormat1(Note)
-  implicit val courseFormat = jsonFormat3(Course)
+  object MyJsonStudentProtocol extends DefaultJsonProtocol {
+    implicit def studentFormat[Note :JsonFormat] = jsonFormat3(Student.apply)
+  }
+  object MyJsonCourseProtocol extends DefaultJsonProtocol {
+    implicit def courseFormat[Student :JsonFormat] = jsonFormat3(Student.apply)
+  }
+
 
   // (fake) async database query api
 
@@ -98,7 +108,7 @@ object WebServer {
       }
     }
 
-    def getWinnerStudents(allStudents: List[Student]): List[String] = {
+    def getWinnerStudents(allStudents: List[Student]): Future[List[String]] = Future{
 
       allStudents.filter(stu => average(stu.notes) > 2.95)
         .map(stu => stu.name)
@@ -153,17 +163,33 @@ object WebServer {
       }~
       get {
         pathPrefix("courses" / IntNumber) {
-          entity(as[Course]) { courseId =>
+           courseId =>
             // there might be no item for a given id
             val maybeStudents: Future[Option[List[Student]]] = Operation.fetchStudents(courseId.toString)
 
+
             onSuccess(maybeStudents) {
-              case Some(some) => complete(some)
+              case Some(some) => complete(some.toString)
               case None => complete(StatusCodes.NotFound)
             }
-          }
+
         }
+      }~
+      get {
+        pathPrefix("winners") { courseId => {
+          val students: Future[List[String]] = Operation.getWinnerStudents(course1.students)
+
+          onSuccess(students) {
+            case Some(students) => complete(students.toString)
+          }
+
+
+
+
+        }
+
       }
+    }
 
     val bindingFuture = Http().bindAndHandle(route, "localhost", 8080)
     println(s"Server online at http://localhost:8080/\nPress RETURN to stop...")
